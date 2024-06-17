@@ -1,0 +1,21 @@
+{
+  "name": "chat-client",
+  "version": "1.0.0",
+  "main": "index.js",
+  "license": "MIT",
+  "type": "module",
+  "scripts": {
+    "dev": "cross-env STAGE=local tsx src/main.ts"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "blessed": "^0.1.81"
+  },
+  "devDependencies": {
+    "@types/blessed": "^0.1.25",
+    "@types/node": "^20.14.2",
+    "cross-env": "^7.0.3",
+    "tsx": "^4.14.0",
+    "typescript": "^5.4.5"
+  }
+}
