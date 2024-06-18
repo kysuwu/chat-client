@@ -3,6 +3,8 @@ import { CookieRepo } from "../repos/cookieRepo";
 import { MessageRepo } from "../repos/messageRepo";
 import { UserRepo } from "../repos/userRepo";
 
+const pollInterval = 500;
+const initTimeOffset = 1000 * 60 * 60
 export class ChatService {
   constructor(
     private userRepo: UserRepo,
@@ -23,7 +25,7 @@ export class ChatService {
     const cookie = await this.cookieRepo.read();
     const user = await this.userRepo.getCurrentUser(cookie);
     await this.cookieRepo.write(user.cookie);
-    let since = new Date(Date.now() - 1000 * 60 * 60);
+    let since = new Date(Date.now() - initTimeOffset);
     while (true) {
       const messages = await this.messageRepo.getRecentMessages(since);
       if (messages.length){
@@ -32,7 +34,7 @@ export class ChatService {
       for (const message of messages) {
         onNewMessage(message)
       }
-      await this.sleep(5000);
+      await this.sleep(pollInterval);
     }
   }
 }
