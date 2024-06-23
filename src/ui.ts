@@ -1,6 +1,8 @@
 import blessed from "blessed";
+import chalk from "chalk";
 
-import { Message } from "./entites/message";
+import { Message, MessageWithUser } from "./entites/message";
+import moment from "moment";
 
 export class UI {
   constructor(onSendMessage: (text: string) => void) {
@@ -24,13 +26,13 @@ export class UI {
     });
 
     this.input.on("submit", (text) => {
-      if(text.trim() === "") {
-        return
+      if (text.trim() === "") {
+        return;
       }
-        onSendMessage(text);
+      onSendMessage(text);
 
-        this.input.clearValue();
-        this.screen.render();
+      this.input.clearValue();
+      this.screen.render();
     });
 
     this.input.on("focus", () => {
@@ -48,8 +50,15 @@ export class UI {
     this.input.focus();
     this.screen.render();
   }
-  addMessage(message: Message) {
-    this.messageList.content += message.text + "\n";
+  addMessage(message: MessageWithUser) {
+    const thewholefuckingmessagething =
+      chalk.bgCyanBright(message.user?.hrid) +
+      " " +
+      chalk.dim(moment(message.created_at).format("HH:mm:ss")) +
+      "\n" +
+      message.text +
+      "\n";
+    this.messageList.content += thewholefuckingmessagething;
     this.messageList.setScrollPerc(100);
     this.screen.render();
   }
