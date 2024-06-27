@@ -1,10 +1,12 @@
 import blessed from "blessed";
 import chalk from "chalk";
-
-import { Message, MessageWithUser } from "./entites/message";
 import moment from "moment";
 
+import { Message, MessageWithUser } from "./entites/message";
+import { isDiffDate } from "./helpers/isDiffDate";
+
 export class UI {
+  private prevMessageDate: Date | null = null;
   constructor(onSendMessage: (text: string) => void) {
     this.screen.on("keypress", (ch, key) => {
       if (key.name === "return") {
@@ -51,6 +53,12 @@ export class UI {
     this.screen.render();
   }
   addMessage(message: MessageWithUser) {
+    if (
+      this.prevMessageDate === null ||
+      isDiffDate(this.prevMessageDate, message.created_at)
+    ) {
+      this.messageList.content += moment(message.created_at).format("YYYY-MM-DD") + "\n";
+    }
     const thewholefuckingmessagething =
       chalk.bgCyanBright(message.user?.hrid) +
       " " +
@@ -61,6 +69,7 @@ export class UI {
     this.messageList.content += thewholefuckingmessagething;
     this.messageList.setScrollPerc(100);
     this.screen.render();
+    this.prevMessageDate = message.created_at;
   }
 
   private screen = blessed.screen({ smartCSR: true });
