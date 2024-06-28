@@ -1,8 +1,8 @@
-import { getCookieRepo } from "./factories/getcookierepo";
-import { getMessageRepo } from "./factories/getmessagerepo";
-import { getUserRepo } from "./factories/getuserrepo";
-import { ChatService } from "./services/chat-service";
-import { UI } from "./ui";
+import { getCookieRepo } from "./factories/getcookierepo.js";
+import { getMessageRepo } from "./factories/getmessagerepo.js";
+import { getUserRepo } from "./factories/getuserrepo.js";
+import { ChatService } from "./services/chat-service.js";
+import { UI } from "./ui.js";
 
 const ui = new UI((messageText) => {chatService.sendMessage(messageText)});
 const cookieRepo = getCookieRepo();

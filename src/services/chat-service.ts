@@ -1,7 +1,7 @@
-import { Message } from "../entites/message";
-import { CookieRepo } from "../repos/cookieRepo";
-import { MessageRepo } from "../repos/messageRepo";
-import { UserRepo } from "../repos/userRepo";
+import { Message } from "../entites/message.js";
+import { CookieRepo } from "../repos/cookieRepo.js";
+import { MessageRepo } from "../repos/messageRepo.js";
+import { UserRepo } from "../repos/userRepo.js";
 
 const pollInterval = 500;
 const initTimeOffset = 1000 * 60 * 60

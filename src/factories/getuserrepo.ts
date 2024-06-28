@@ -1,5 +1,5 @@
-import { UserRepo } from "../repos/userRepo";
-import { getStageCfg } from "../stageconfig";
+import { UserRepo } from "../repos/userRepo.js";
+import { getStageCfg } from "../stageconfig.js";
 
 
 let repo: UserRepo | null = null;

@@ -1,4 +1,4 @@
-import { CookieRepo } from "../repos/cookieRepo";
+import { CookieRepo } from "../repos/cookieRepo.js";
 
 
 let repo: CookieRepo | null = null;

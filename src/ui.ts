@@ -2,8 +2,8 @@ import blessed from "blessed";
 import chalk from "chalk";
 import moment from "moment";
 
-import { Message, MessageWithUser } from "./entites/message";
-import { isDiffDate } from "./helpers/isDiffDate";
+import { MessageWithUser } from "./entites/message.js";
+import { isDiffDate } from "./helpers/isDiffDate.js";
 
 export class UI {
   private prevMessageDate: Date | null = null;

@@ -10,7 +10,7 @@ export class CookieRepo {
       const data = await fs.readFile(COOKIE_FILE, 'utf-8');
       const json = JSON.parse(data);
       return json.cookie;
-    } catch (error) {
+    } catch (error: any) {
       if (error.code === 'ENOENT') {
         return null;
       }

@@ -1,5 +1,5 @@
-import { Message, MessageWithUser } from "../entites/message";
-import { User } from "../entites/user";
+import { Message, MessageWithUser } from "../entites/message.js";
+import { User } from "../entites/user.js";
 
 export function addUsersToMessages(
   messages: Message[],
