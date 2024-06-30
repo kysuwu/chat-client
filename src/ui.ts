@@ -1,9 +1,8 @@
+import { MessageWithUser } from "./entites/message.js";
+import { isDiffDate } from "./helpers/isDiffDate.js";
 import blessed from "blessed";
 import chalk from "chalk";
 import moment from "moment";
-
-import { MessageWithUser } from "./entites/message.js";
-import { isDiffDate } from "./helpers/isDiffDate.js";
 
 export class UI {
   private prevMessageDate: Date | null = null;
@@ -57,15 +56,16 @@ export class UI {
       this.prevMessageDate === null ||
       isDiffDate(this.prevMessageDate, message.created_at)
     ) {
-      this.messageList.content += moment(message.created_at).format("YYYY-MM-DD") + "\n";
+      this.messageList.content +=
+        chalk.rgb(255, 255, 255).bold(moment(message.created_at).format("ddd DD MMM")) + "\n\n";
     }
     const thewholefuckingmessagething =
-      chalk.bgCyanBright(message.user?.hrid) +
+      chalk.hex("#ffffff").bgBlack(message.user?.hrid) +
       " " +
-      chalk.dim(moment(message.created_at).format("HH:mm:ss")) +
+      chalk.rgb(10, 200, 255)(moment(message.created_at).format("HH:mm:ss")) +
       "\n" +
       message.text +
-      "\n";
+      "\n\n";
     this.messageList.content += thewholefuckingmessagething;
     this.messageList.setScrollPerc(100);
     this.screen.render();
@@ -81,17 +81,17 @@ export class UI {
     width: "100%",
     height: "100%-1",
     style: {
-      bg: "blue",
-      fg: "white",
-      border: { bg: "blue", fg: "white" },
+      bg: "#0000ff",
+      fg: "#ffffff",
+      border: { bg: "#0000ff", fg: "#ffffff" },
     },
     border: { type: "line" },
     scrollable: true,
     alwaysScroll: true,
     scrollbar: {
       style: {
-        bg: "blue",
-        track: "white",
+        bg: "#0000ff",
+        track: "#ffffff",
       },
     },
     mouse: true,
@@ -107,8 +107,8 @@ export class UI {
     label: "enter...",
     inputOnFocus: true,
     style: {
-      bg: "black",
-      fg: "white",
+      bg: "#000000",
+      fg: "#ffffff",
     },
   });
 }

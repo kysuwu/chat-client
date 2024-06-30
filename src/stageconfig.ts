@@ -1,13 +1,18 @@
 import { ok } from "assert";
 
 export const stagecfg = {
-  dev: { serverUrl: "http://localhost:3000" },
-  prod: { serverUrl: "https://kysanonchat.vercel.app" },
-  prev: { serverUrl: "https://chat-server-kysuwu-afafs-projects-3d10693f.vercel.app" },
+  DEV: { serverUrl: "http://localhost:3000" },
+  PROD: { serverUrl: "https://kysanonchat.vercel.app" },
+  PREV: {
+    serverUrl: "https://chat-server-kysuwu-afafs-projects-3d10693f.vercel.app",
+  },
 };
 
 export function getStageCfg(): { serverUrl: string } {
-  const s = process.env.STAGE || "prod";
-  ok(s === "dev" || s === "prod" || s === "prev");
+  const s = process.env.STAGE || "PROD";
+  ok(
+    s === "DEV" || s === "PROD" || s === "PREV",
+    "invalid stage, got " + s + ", expected "+Object.keys(stagecfg).join("|")
+  );
   return stagecfg[s];
 }
