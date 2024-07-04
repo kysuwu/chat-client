@@ -1,10 +1,9 @@
 import { CookieRepo } from "../repos/cookieRepo.js";
 
-
 let repo: CookieRepo | null = null;
-export function getCookieRepo() {
+export function getCookieRepo(profile: string) {
     if (!repo) {
-        repo = new CookieRepo();
+        repo = new CookieRepo(profile);
     }
     return repo;
 }

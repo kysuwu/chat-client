@@ -1,4 +1,5 @@
 import { MessageWithUser } from "./entites/message.js";
+import { User } from "./entites/user.js";
 import { isDiffDate } from "./helpers/isDiffDate.js";
 import blessed from "blessed";
 import chalk from "chalk";
@@ -51,6 +52,9 @@ export class UI {
     this.input.focus();
     this.screen.render();
   }
+  destroy() {
+    this.screen.destroy();
+  }
   addMessage(message: MessageWithUser) {
     if (
       this.prevMessageDate === null ||
@@ -72,6 +76,12 @@ export class UI {
     this.prevMessageDate = message.created_at;
   }
 
+  setUser(user: User) {
+    this.username.content = "logged in as: " + chalk.hex("#ffffff").bgBlack(user.hrid)
+    this.screen.render()
+    this.user = user
+  }
+  private user?: User
   private screen = blessed.screen({ smartCSR: true });
 
   private messageList = blessed.box({
@@ -96,6 +106,19 @@ export class UI {
     },
     mouse: true,
   });
+
+  private username = blessed.box({
+    parent: this.screen,
+    top: 0,
+    right: 1,
+    height: 1,
+    width: "shrink",
+    content: "",
+    style: {
+      bg: "#0000ff",
+      fg: "#ffffff",
+    },
+  })
 
   private input = blessed.textbox({
     parent: this.screen,
