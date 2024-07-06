@@ -11,7 +11,7 @@
     "anonchat": "dist/main.js"
   },
   "scripts": {
-    "dev": "cross-env STAGE=LOCAL tsx src/main.ts",
+    "dev": "cross-env STAGE=DEV tsx src/main.ts",
     "prev": "cross-env STAGE=PREV tsx src/main.ts",
     "build": "tsc",
     "lint": "eslint . --fix",

@@ -61,10 +61,12 @@ export class UI {
       isDiffDate(this.prevMessageDate, message.created_at)
     ) {
       this.messageList.content +=
-        chalk.rgb(255, 255, 255).bold(moment(message.created_at).format("ddd DD MMM")) + "\n\n";
+        chalk
+          .rgb(255, 255, 255)
+          .bold(moment(message.created_at).format("ddd DD MMM")) + "\n\n";
     }
     const thewholefuckingmessagething =
-      chalk.hex("#ffffff").bgBlack(message.user?.hrid) +
+      chalk.hex("#ffffff").bgBlack(message.user?.hrid.toString().padStart(6, "0")) +
       " " +
       chalk.rgb(10, 200, 255)(moment(message.created_at).format("HH:mm:ss")) +
       "\n" +
@@ -77,11 +79,13 @@ export class UI {
   }
 
   setUser(user: User) {
-    this.username.content = "logged in as: " + chalk.hex("#ffffff").bgBlack(user.hrid)
-    this.screen.render()
-    this.user = user
+    this.username.content =
+      "logged in as: " +
+      chalk.hex("#ffffff").bgBlack(user.hrid.toString().padStart(6, "0"));
+    this.screen.render();
+    this.user = user;
   }
-  private user?: User
+  private user?: User;
   private screen = blessed.screen({ smartCSR: true });
 
   private messageList = blessed.box({
@@ -118,7 +122,7 @@ export class UI {
       bg: "#0000ff",
       fg: "#ffffff",
     },
-  })
+  });
 
   private input = blessed.textbox({
     parent: this.screen,
