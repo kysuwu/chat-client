@@ -139,6 +139,8 @@ web_modules/
 .next
 out
 
+*.exe
+
 # Nuxt.js build / generate output
 .nuxt
 dist
