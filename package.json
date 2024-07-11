@@ -14,7 +14,7 @@
     "dev": "cross-env STAGE=DEV tsx src/main.ts",
     "prev": "cross-env STAGE=PREV tsx src/main.ts",
     "build-js": "tsup ./src/main.ts",
-    "build-exe": "pkg . --no-bytecode ",
+    "build-exe": "pkg . --no-bytecode --out-path dist/bin",
     "build": "yarn build-js && yarn build-exe",
     "lint": "eslint . --fix",
     "prepublishOnly": "npm run build"
